@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/angsuo/irfd/issues"
   },
-  "homepage": "https://github.com/angsuo/irfd#readme"
+  "homepage": "https://github.com/angsuo/irfd#readme",
+  "devDependencies": {
+    "@tsconfig/node14": "^1.0.1",
+    "@types/node": "^16.0.1",
+    "typescript": "^4.3.5"
+  }
 }
