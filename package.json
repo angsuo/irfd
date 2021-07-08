@@ -4,7 +4,7 @@
   "description": "food backend service",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch './**/*.ts' --exec ts-node src/index.ts"
+    "dev": "nodemon --watch ./**/*.ts --exec ts-node src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
     "nodemon": "^2.0.10",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
