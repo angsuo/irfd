@@ -1,0 +1,24 @@
+{
+  "name": "irfd",
+  "version": "1.0.0",
+  "description": "food backend service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angsuo/irfd.git"
+  },
+  "keywords": [
+    "food",
+    "database",
+    "restaurant"
+  ],
+  "author": "angsuo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angsuo/irfd/issues"
+  },
+  "homepage": "https://github.com/angsuo/irfd#readme"
+}
