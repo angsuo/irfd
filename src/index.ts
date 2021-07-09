@@ -15,27 +15,22 @@ const app = express();
 app.get("/", (_, res) => {
 
     // Send the response from server
-    res.send("<h1>Internet Restaurant and Food Database</h1>")
+    res.json("Welcome to the Internet Restaurants and Food Database")
 })
 //      Get "/restaurants"
-//          Send a list of 10 restaurants
+//          Send an array of 10 restaurants objects
 app.get("/restaurants", (req, res) => {
     // Get informations from the request (later the GPS coordinates)
-    const reqInfos = req.headers
-    console.log(`New request from browser : ${reqInfos["user-agent"]}`);
+    const agent = req.headers["user-agent"];
+    console.log(`New request for restaurants from browser : ${agent}`);
 
     /**
      * 10 restaurants near Request GPS position
      */
-    const restaurants = ["resto 1", "resto 2", "resto 3", "resto 4", "resto 5", "resto 6", "resto 7", "resto 8", "resto 9", "resto 10"];
+    const restaurants = [{name:"resto 1"}, {name:"resto 2"}, {name:"resto 3"}, {name:"resto 4"}, {name:"resto 5"}, {name:"resto 6"}];
 
-    /**
-     * 10 restaurant names enclosed in <p> tag
-     */
-    const restaurantNames = restaurants.reduce((prev, curr, i) => `${i === 1 ? "<p>" + prev + "</p>" : prev}<p>${curr}</p>`)
-
-    // Send response back
-    res.send(restaurantNames);
+    // Send JSON response back
+    res.json(restaurants);
 })
 
 // Start server
