@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # Output JS files from TS
-build/
+build
