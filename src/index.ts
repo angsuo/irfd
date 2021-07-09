@@ -1,6 +1,10 @@
 // Import modules
 //      Express
 import express from "express";
+//      Typeorm imports
+import "reflect-metadata";
+import { createConnection } from "typeorm";
+import { User } from "./entity/User";
 
 // Declare variables | Read environment variables
 //      Port
@@ -39,7 +43,31 @@ app.get("/restaurants", (req, res) => {
   res.json(restaurants);
 });
 
-// Start server
-app.listen(PORT, () =>
-  console.log(`server running at http://localhost:${PORT}`)
-);
+// Connect to DB
+createConnection()
+  .then(async (connection) => {
+    // Log the DB connection status
+    console.log("Connected to DB");
+
+    // Get the User repository in DB
+    const userTable = connection.getRepository(User);
+
+    // // create new user
+    // let newUser = new User();
+    // newUser.name = "JJJ";
+    // newUser.description = "An awesome backend dev"
+
+    // await userTable.save(newUser);
+
+    // Get all users in User repository
+    const users = await userTable.find();
+
+    console.log("Users in DB:", users);
+    
+    // Start server
+    app.listen(PORT, () =>
+      console.log(`server running at http://localhost:${PORT}`)
+    );
+  })
+  .catch((error) => console.log(error));
+
