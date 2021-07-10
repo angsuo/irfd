@@ -4,6 +4,7 @@ import express from "express";
 //      Typeorm imports
 import "reflect-metadata";
 import { createConnection } from "typeorm";
+import { Restaurant } from "./entity/Restaurant";
 import { User } from "./entity/User";
 
 // Declare variables | Read environment variables
@@ -49,25 +50,39 @@ createConnection()
     // Log the DB connection status
     console.log("Connected to DB");
 
-    // Get the User repository in DB
-    const userTable = connection.getRepository(User);
+    // Get the Restaurant repository in DB
+    const restaurantTable = connection.getRepository(Restaurant);
 
-    // // create new user
-    // let newUser = new User();
-    // newUser.name = "JJJ";
-    // newUser.description = "An awesome backend dev"
+    // create new restaurant
+    let newRestaurant = new Restaurant();
+    newRestaurant.name = "KFC - Kentucky Fried Chicken";
+    newRestaurant.description = "Enjoy unlimited Hot Wings 24/7!";
+    newRestaurant.address = "in your lungs";
 
-    // await userTable.save(newUser);
+    // save new restaurant if doesn't exists
+    //    count number of restaurants with same name & same address
+    const duplicateCount = await restaurantTable.count({
+      name: newRestaurant.name,
+      address: newRestaurant.address,
+    })
+    //    Duplicate if count isn't 0
+    const restaurantNameExists = duplicateCount > 0
+    //    If isn't duplicate restaurant, create new entry
+    if (!restaurantNameExists) {
+      await restaurantTable.save(newRestaurant);
+    }
 
-    // Get all users in User repository
-    const users = await userTable.find();
+    // // delete the third row (duplicate)
+    // await restaurantTable.delete({id:3});
 
-    console.log("Users in DB:", users);
-    
+    // Get all restaurants in User repository
+    const restaurants = await restaurantTable.find();
+
+    console.log("Restaurants in DB:", restaurants);
+
     // Start server
     app.listen(PORT, () =>
       console.log(`server running at http://localhost:${PORT}`)
     );
   })
   .catch((error) => console.log(error));
-
