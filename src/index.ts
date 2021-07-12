@@ -8,17 +8,11 @@ import { Resto } from "./entity/Resto";
   // Connect to DB and get connection object
   const connection = await createConnection();
 
-  // Instantiate the horairesRepo
-  const horairesRepo = connection.getRepository(Horaire);
-
   // Instantiate the restoRepo
   const restoRepo = connection.getRepository(Resto);
 
-  // get the first Horaire Row
-  const horaires = await horairesRepo.findOne().catch(e=>console.log(e));
-
   // get the first Resto row
-  const resto = await restoRepo.findOne().catch(e=>console.log(e));
+  const resto = await restoRepo.findOne({relations:['horaires']}).catch(e=>console.log(e));
 
   // // link horaires to resto
   // if (resto && horaires) {
@@ -30,7 +24,5 @@ import { Resto } from "./entity/Resto";
   //   const newResto = await restoRepo.save(resto);
   //   console.log("New resto:", newResto);
   // }
-
-  console.log("Horaires:", horaires ? horaires.resto : "");
   console.log("Resto:", resto)
 })();
