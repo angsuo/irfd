@@ -1,7 +1,6 @@
 //      Typeorm imports
 import "reflect-metadata";
 import { createConnection } from "typeorm";
-import { Horaire } from "./entity/Horaire";
 import { Resto } from "./entity/Resto";
 
 (async () => {
