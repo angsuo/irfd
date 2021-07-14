@@ -1,7 +1,7 @@
 # Internet Restaurants &amp; Food Database
 
-The idea is to store all available informations about food and restaurants.
+This awesome project is aborted because I don't know how to refactor an existing Node.js project into Nest.js. Also I don't know how to use Git properly yet.
 
-# Stacks
+# I am a noob
 
-Typescript
+Until I master Git for team development, I'll keep the horrible title above.
